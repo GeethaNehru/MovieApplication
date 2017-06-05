@@ -1,0 +1,43 @@
+<div class="container-fluid">
+
+  
+    <h1>Search Movies</h1>    
+    <form (submit)="search()">
+      <input type="text" class="form-control" [(ngModel)]="searchString" name="searchString">      
+      <button class="btn btn-primary btn-lg">Search</button>
+    </form>
+   
+
+<div class="container-fluid" 
+         infinite-scroll
+         debounce
+         [infiniteScrollDistance]="60000"
+         [infiniteScrollThrottle]="20"
+         (scrolled)="onScroll(searchString)">
+
+<div *ngIf="searchResults">
+ 
+  
+  <div *ngFor="let movie of searchResults">    
+         
+    <div class="panel-heading container-fluid">
+    <div class="panel-body ">
+      <div class="col-md-4"><img [src]="'http://image.tmdb.org/t/p/w300' + movie.poster_path"/></div>
+      <div class="col-md-8">
+    <div><h1>{{movie.title}}</h1></div>    
+    <div><h3>{{movie.release_date}}</h3></div>
+    <div><h3>{{movie.vote_average}}</h3></div>    
+    <div><h3>{{getGenre(movie.genre_ids)}}</h3></div>    
+    <div><h4>{{movie.overview}}</h4></div>
+    
+   <button (click)=this.favouritesComponent.addFavourite(movie.id,movie.title,movie.release_date,movie.vote_average,movie.genre_ids,movie.overview,movie.poster_path)>Add to favourites</button>
+      
+    </div>
+  </div>
+    </div>
+  
+</div>
+</div>
+</div>
+
+</div>

@@ -1,0 +1,29 @@
+<body class="container-fluid">
+  
+  <div class="container-fluid">
+  <div *ngIf="getResults">
+ 
+  
+  <div *ngFor="let movie of getResults">    
+         
+    <div class="panel-heading">
+    <div class="panel-body ">
+      <div class="col-md-4"><img [src]="'http://image.tmdb.org/t/p/w300' + movie.poster_path"/></div>
+      <div class="col-md-8">
+    <div><h1>{{movie.title}}</h1></div>    
+    <div><h3>{{movie.date}}</h3></div>
+    <div><h3>{{movie.rating}}</h3><input id="input" type="text" name="rating" [(ngModel)]="movie.rating"></div>    
+    <div><h3>{{getGenre(movie.genre)}}</h3></div>    
+    <div><h4>{{movie.overview}}</h4></div>
+    <button (click)=updateRating(movie.id,movie.title,movie.date,movie.rating,movie.genre,movie.overview,movie.poster_path)>Update</button>
+    <button (click)=deletefavourites(movie.id)>Delete</button>
+    </div>
+  </div>
+  
+    </div>
+
+  
+</div>
+</div>
+</div>
+</body>
